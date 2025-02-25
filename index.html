@@ -30,7 +30,7 @@
     </d-path-size>
     <d-path-size vb="24" width="2"
         d="M20 6L18 4C18 4 18 4 18 4C18 4 18 4 17 4C17 4 17 4 17 4C17 4 17 4 17 4C17 4 17 4 16 4L2 19C2 19 2 19 2 19C2 19 2 19 2 20C2 20 2 20 2 20C2 20 2 20 2 20C2 20 2 20 2 20L4 22C4 22 4 22 4 22C4 22 4 22 4 22C4 22 4 22 4 22C4 22 4 22 5 22L20 7C20 7 20 7 20 7C20 7 20 7 20 7C20 7 20 7 20 7C20 7 20 7 20 6ZM14 7L17 10M5 6V10M7 8H3M19 14V18M21 16H17M10 2V4M11 3H9">
-        removed .NNNN precision, needs fixing d-path
+        removed precision, needs fixing d-path?? or is 24x24px icon acceptable?
     </d-path-size>
     <d-path-size vb="240" width="20"
         d="M196 56L184 44C182 42 181 42 180 41C178 40 176 40 175 40C173 40 172 40 170 41C169 42 168 42 166 44L24 186C22 188 22 189 21 190C20 192 20 194 20 195C20 197 20 198 21 200C22 201 22 202 24 204L36 216C37 218 39 218 40 219C42 220 43 220 45 220C46 220 48 220 49 219C51 218 52 218 54 216L196 74C197 72 198 71 199 70C200 68 200 66 200 65C200 63 200 62 199 60C198 59 197 58 196 56ZM140 70L170 100M50 60V100M70 80H30M190 140V180M210 160H170M100 20V40M110 30H90">
@@ -52,6 +52,11 @@
                                 innerHTML: "svg{width:100%;height:100%;background:lightgreen}"
                             }),
                             createElement("div", {
+                                style: "width:24px;height:24px",
+                                innerHTML: svg
+                            }),
+                            createElement("br"),
+                            createElement("div", {
                                 innerHTML: svg
                             }),
                             createElement("br"),
@@ -59,10 +64,12 @@
                             createElement("br"),
                             "viewBox: ",
                             createElement("b", {
-                                innerHTML: "0 0 " + vb + "x" + vb,
+                                innerHTML: vb + "x" + vb,
                             }),
                             " d-path size: ",
-                            d.length,
+                            createElement("b", {
+                                innerHTML: d.length,
+                            }),
                             " bytes ",
                             createElement("br"),
                             createElement("br"),
