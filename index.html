@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG ViewBox Example</title>
+    <style>
+        body {
+            font: 21px Arial;
+        }
+
+        d-path-size {
+            display: inline-block;
+            width: 20vw;
+            margin: 10px;
+            padding: 10px;
+            vertical-align: top;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>SVG ViewBox and X.NNNN precision versus X precision</h1>
+    <a href="https://yqnn.github.io/svg-path-editor/#">https://yqnn.github.io/svg-path-editor</a> SVG Path Editor is your friend. AI does a decent job too.
+    <br>
+    <d-path-size vb="24" width="2"
+        d="M19.6398 5.64005L18.3598 4.36004C18.2473 4.24636 18.1133 4.15612 17.9657 4.09452C17.8181 4.03293 17.6598 4.00122 17.4998 4.00122C17.3399 4.00122 17.1815 4.03293 17.0339 4.09452C16.8863 4.15612 16.7523 4.24636 16.6398 4.36004L2.3598 18.64C2.24612 18.7526 2.15587 18.8865 2.09428 19.0341C2.03269 19.1817 2.00098 19.3401 2.00098 19.5C2.00098 19.66 2.03269 19.8184 2.09428 19.966C2.15587 20.1136 2.24612 20.2475 2.3598 20.36L3.6398 21.64C3.75162 21.755 3.88534 21.8463 4.03305 21.9087C4.18076 21.971 4.33947 22.0031 4.4998 22.0031C4.66014 22.0031 4.81885 21.971 4.96656 21.9087C5.11427 21.8463 5.24798 21.755 5.3598 21.64L19.6398 7.36005C19.7547 7.24822 19.846 7.11451 19.9084 6.9668C19.9708 6.81909 20.0029 6.66038 20.0029 6.50005C20.0029 6.33971 19.9708 6.181 19.9084 6.03329C19.846 5.88558 19.7547 5.75187 19.6398 5.64005ZM14 7L17 10M5 6V10M7 8H3M19 14V18M21 16H17M10 2V4M11 3H9">
+        Original, drawn with one &lt;path> for demo only
+    </d-path-size>
+    <d-path-size vb="24" width="2"
+        d="M20 6L18 4C18 4 18 4 18 4C18 4 18 4 17 4C17 4 17 4 17 4C17 4 17 4 17 4C17 4 17 4 16 4L2 19C2 19 2 19 2 19C2 19 2 19 2 20C2 20 2 20 2 20C2 20 2 20 2 20C2 20 2 20 2 20L4 22C4 22 4 22 4 22C4 22 4 22 4 22C4 22 4 22 4 22C4 22 4 22 5 22L20 7C20 7 20 7 20 7C20 7 20 7 20 7C20 7 20 7 20 7C20 7 20 7 20 6ZM14 7L17 10M5 6V10M7 8H3M19 14V18M21 16H17M10 2V4M11 3H9">
+        removed .NNNN precision, needs fixing d-path
+    </d-path-size>
+    <d-path-size vb="240" width="20"
+        d="M196 56L184 44C182 42 181 42 180 41C178 40 176 40 175 40C173 40 172 40 170 41C169 42 168 42 166 44L24 186C22 188 22 189 21 190C20 192 20 194 20 195C20 197 20 198 21 200C22 201 22 202 24 204L36 216C37 218 39 218 40 219C42 220 43 220 45 220C46 220 48 220 49 219C51 218 52 218 54 216L196 74C197 72 198 71 199 70C200 68 200 66 200 65C200 63 200 62 199 60C198 59 197 58 196 56ZM140 70L170 100M50 60V100M70 80H30M190 140V180M210 160H170M100 20V40M110 30H90">
+        Multiplied viewBox by 10, removed .NNNN precision
+    </d-path-size>
+
+    <script>
+        customElements.define('d-path-size', class extends HTMLElement {
+            connectedCallback() {
+                const createElement = (tag, props = {}) => Object.assign(document.createElement(tag), props);
+                setTimeout(() => {
+                    let vb = this.getAttribute("vb") || 24;
+                    let strokeWidth = "stroke-width=" + this.getAttribute("width"); // different viewBox needs different stroke-width
+                    let d = this.getAttribute("d");
+                    let svg = `<svg viewBox="0 0 ${vb} ${vb}" fill="none" stroke="currentColor" ${strokeWidth} stroke-linecap="round" stroke-linejoin="round"><path d="${d}"/></svg>`;
+                    this.attachShadow({ mode: 'open' })
+                        .append(
+                            createElement("style", {
+                                innerHTML: "svg{width:100%;height:100%;background:lightgreen}"
+                            }),
+                            createElement("div", {
+                                innerHTML: svg
+                            }),
+                            createElement("br"),
+                            createElement("slot"),
+                            createElement("br"),
+                            "viewBox: ",
+                            createElement("b", {
+                                innerHTML: "0 0 " + vb + "x" + vb,
+                            }),
+                            " d-path size: ",
+                            d.length,
+                            " bytes ",
+                            createElement("br"),
+                            createElement("br"),
+                            createElement("div", {
+                                style: "font-size: 13px",
+                                innerHTML: d,
+                            })
+                        );
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
+
+</html>
