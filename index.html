@@ -40,8 +40,10 @@
     <script>
         customElements.define('d-path-size', class extends HTMLElement {
             connectedCallback() {
+
                 const createElement = (tag, props = {}) => Object.assign(document.createElement(tag), props);
-                setTimeout(() => {
+
+                setTimeout(() => { // wait for lightDOM to be parsed
                     let vb = this.getAttribute("vb") || 24;
                     let strokeWidth = "stroke-width=" + this.getAttribute("width"); // different viewBox needs different stroke-width
                     let d = this.getAttribute("d");
@@ -51,7 +53,7 @@
                             createElement("style", {
                                 innerHTML: "svg{width:100%;height:100%;background:lightgreen}"
                             }),
-                            createElement("div", {
+                            createElement("div", { // icon size
                                 style: "width:24px;height:24px",
                                 innerHTML: svg
                             }),
@@ -60,7 +62,7 @@
                                 innerHTML: svg
                             }),
                             createElement("br"),
-                            createElement("slot"),
+                            createElement("slot"), // slot lightDOM
                             createElement("br"),
                             "viewBox: ",
                             createElement("b", {
@@ -71,10 +73,8 @@
                                 innerHTML: d.length,
                             }),
                             " bytes ",
-                            createElement("br"),
-                            createElement("br"),
                             createElement("div", {
-                                style: "font-size: 13px",
+                                style: "font-size:13px;padding-top:2em",
                                 innerHTML: d,
                             })
                         );
