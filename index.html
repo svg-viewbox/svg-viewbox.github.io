@@ -12,7 +12,7 @@
 
         d-path-size {
             display: inline-block;
-            width: 20vw;
+            width: 15vw;
             margin: 10px;
             padding: 10px;
             vertical-align: top;
@@ -42,7 +42,7 @@
                                 innerHTML: svg
                             }),
                             createElement("slot", {
-                                style: "display:block;height:3em"
+                                style: "display:block;height:4em"
                             }),
                             "viewBox: ",
                             createElement("b", {
@@ -67,7 +67,7 @@
 <body>
     <h1>SVG ViewBox and X.NNNN precision versus X precision</h1>
     <a href="https://yqnn.github.io/svg-path-editor/#">https://yqnn.github.io/svg-path-editor</a> SVG Path Editor is
-    your friend. AI does a decent job too.
+    your friend.
     <br>
     <d-path-size vb="24" width="2"
         d="M19.6398 5.64005L18.3598 4.36004C18.2473 4.24636 18.1133 4.15612 17.9657 4.09452C17.8181 4.03293 17.6598 4.00122 17.4998 4.00122C17.3399 4.00122 17.1815 4.03293 17.0339 4.09452C16.8863 4.15612 16.7523 4.24636 16.6398 4.36004L2.3598 18.64C2.24612 18.7526 2.15587 18.8865 2.09428 19.0341C2.03269 19.1817 2.00098 19.3401 2.00098 19.5C2.00098 19.66 2.03269 19.8184 2.09428 19.966C2.15587 20.1136 2.24612 20.2475 2.3598 20.36L3.6398 21.64C3.75162 21.755 3.88534 21.8463 4.03305 21.9087C4.18076 21.971 4.33947 22.0031 4.4998 22.0031C4.66014 22.0031 4.81885 21.971 4.96656 21.9087C5.11427 21.8463 5.24798 21.755 5.3598 21.64L19.6398 7.36005C19.7547 7.24822 19.846 7.11451 19.9084 6.9668C19.9708 6.81909 20.0029 6.66038 20.0029 6.50005C20.0029 6.33971 19.9708 6.181 19.9084 6.03329C19.846 5.88558 19.7547 5.75187 19.6398 5.64005ZM14 7L17 10M5 6V10M7 8H3M19 14V18M21 16H17M10 2V4M11 3H9">
@@ -84,6 +84,10 @@
     <d-path-size vb="240" width="20"
         d="M196 56 184 44c-2-2-3-2-4-3-2-1-4-1-5-1-2 0-3 0-5 1-1 1-2 1-4 3L24 186c-2 2-2 3-3 4-1 2-1 4-1 5 0 2 0 3 1 5 1 1 1 2 3 4l12 12c1 2 3 2 4 3 2 1 3 1 5 1 1 0 3 0 4-1 2-1 3-1 5-3L196 74c1-2 2-3 3-4 1-2 1-4 1-5 0-2 0-3-1-5-1-1-2-2-3-4ZM140 70l30 30M50 60v40M70 80H30m160 60v40m20-20H170M100 20V40m10-10H90">
         Optimized with <a href="https://yqnn.github.io/svg-path-editor/#">SVG Path Editor</a>
+    </d-path-size>
+    <d-path-size vb="240" width="20"
+        d="M196 56L184 44c-1-1-2-2-3-2s-2 1-3 2L24 186c-1 1-1 2-1 3s0 2 1 3l12 12c1 1 2 2 3 2s2-1 3-2l134-134c1-1 2-2 2-3s0-2-1-3c0-1-1-2-2-3ZM140 70L170 100M50 60V100M70 80H30M190 140V180M210 160H170M100 20V40M110 30H90">
+        ChatGPT, <i>multiply the viewBox size by 10, remove precision make this d-path as small as possible:</i>
     </d-path-size>
 
 </body>
